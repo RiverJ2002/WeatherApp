@@ -17,19 +17,45 @@
 <body>
     <nav>
         <h2 id="page_title">Starweather</h2>
-        <section id="choose_the_city">
-            <img src="arrow_drop_down.png" alt="" id="arrow_icon">
-            <p id="city_choose">انتخاب شهر</p>
-            <img src="location.png" alt="" id="location_icon">
+
+        <section class="dropdowns">
+
+            <button id="choose_the_city" onclick="show_country_dropdown()">
+                <img src="arrow_drop_down.png" alt="" id="arrow_icon">
+                <p id="city_choose">انتخاب شهر</p>
+                <img src="location.png" alt="" id="location_icon">
+            </button>
+    
+
+            <section id="country_cities">
+                <section id="country_drop_down"></section>
+                <section id="city_drop_down"></section>
+            </section>
+
+
         </section>
+
+
     </nav>
+
+
+    <section id="weather_girl">
+        <section id="weather_girl_predicts">
+        
+        </section>
+    </section>
+        
+
+
+
 
     <footer>
         <p id="footer_text">ساخته شده در <span id="starkooch">استارکوچ</span></p>
         <img src="Logo.png" alt="" id="footer_logo">
     </footer>
 
-
+    
+    <script src="scripts/script.js"></script>
 </body>
 
 
