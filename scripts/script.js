@@ -88,15 +88,29 @@ async function create_country_list() {
 
 
 
+
+
 async function get_weather_title(city) {
+  
   let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d822c93ecbcf8e0a887cfaac6d93ff64`;  
-  weather_data = fetch(apiUrl).then((response) => response.json()).then(data => data);
+  const weather_data = await fetch(apiUrl)
+      .then((response) => response.json())
+      .then(data => {
 
-  console.log(weather_data);
+          const weatherCondition = data.list[0].weather[0].main;
+          const weatherCondition2 = data.list[1].weather[0].main;
+          var li =Array()
+          li.push(`The current weather in ${city} is ` + weatherCondition)
+          li.push(`tomorrow weather in ${city} will be `+ weatherCondition2)
+          const weatherCondition3 = data.list[2].weather[0].main;
+          // Change the returned value here
+          return li;
+      });
+  
 
+
+  return weather_data
 }
-
-
 
 
 
@@ -105,4 +119,13 @@ async function get_weather_title(city) {
 
 create_country_list();
 
-get_weather_title("London");
+get_weather_title('London').then(message => {
+  var today = document.createElement("P");  
+  var tomorrow = document.createElement("P");  
+  today.innerHTML = message[0];
+  tomorrow.innerHTML = message[1];
+
+  weather_girl_section.appendChild(today);
+  weather_girl_section.appendChild(tomorrow);
+
+});
