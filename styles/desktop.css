@@ -21,25 +21,38 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: beige;
+    background-color: #EBEBEB;
     flex-direction: column;
     margin: 0px;
+    
+     
     
 }
 
 
-nav{
+body.show_jinx{
+    background-image: url('extra.png'); /* Add your image path here */
+    background-size: cover;
+}
+
+
+
+nav {
     background-color: aqua;
     width: 100%;
+    position: fixed; /* Fix the navbar at the top */
+    top: 0; /* Stick to the top */
+    left: 0;
+    z-index: 1000; /* Ensure it appears above other elements */
     display: flex;
     padding-left: 56px;
     padding-right: 56px;
     box-sizing: border-box;
-    position: relative;
     justify-content: space-between;
     align-items: center;
-    
+    height: 60px; 
 }
+
 
 
 
@@ -93,11 +106,20 @@ nav{
 
 footer{
     width: 100%;
-    background-color: #EBEBEB;
+    background-color: gold;
     display: flex;
     justify-content:center;
     align-items: center;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 70px;
 }
+
+
+
+#footer.slid-up {
+    transform: translateY(200px);
+}
+
 
 
 #footer_logo{
@@ -137,20 +159,25 @@ footer{
     width: 100%;
     display: flex;
     justify-content: center;
-
+    background-color: #57c4ef;
     height: 677px;
-    background-color: chartreuse;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 60px;
+    
 }
 
+#weather_girl.slid-up {
+    transform: translateY(-80%);
+}
 
 
 
 #weather_girl_predicts{
     width: 488px;
     height: 637px;
-
-    margin-top: 40px;
-    background-color: fuchsia;
+    background-color: gold;
+    
+    
 }
 
 
