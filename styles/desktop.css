@@ -14,6 +14,7 @@ html{
     font-family: 'Vazir';
     height: 100%;
     font-size: 10px;
+    display: flex;
 }
 
 
@@ -112,6 +113,7 @@ footer{
     align-items: center;
     transition: transform 0.5s ease-in-out;
     margin-top: 70px;
+    margin-bottom: 30px;
 }
 
 
@@ -156,13 +158,13 @@ footer{
 
 
 #weather_girl{
-    width: 100%;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #57c4ef;
-    height: 677px;
+    
     transition: transform 0.5s ease-in-out;
     margin-top: 60px;
     
@@ -174,17 +176,6 @@ footer{
 
 
 
-#weather_girl_predicts{
-    width: 488px;
-    height: 449px;
-    background-color: gold;
-    margin-bottom: 32px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
 
 
 
@@ -376,18 +367,21 @@ footer{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 200px;
+    
 }
 
 
 #day1 img{
     width: 200px;
     height: 200px;
+    
 }
 
 
 #day1 p:first-of-type {
 
-    font-size: 80px;
+    font-size: 8em;
     font-weight: 600;
     line-height: 80px;
     text-align: right;
@@ -411,4 +405,39 @@ footer{
     color: #B3B3B3;
     margin-top: 0px;
 
+}
+
+
+#humidity{
+    display: none;
+    
+}
+
+
+
+#wind{
+    display: none;
+}
+
+
+.show_humidity_wind{
+    display: flex !important;
+    background-color: blueviolet;
+    justify-content: space-between;
+    width: 33.888%;
+
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 15px;
+    text-align: right;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+    color: #051320;
+
+
+}
+
+
+.show_humidity_wind p{
+    margin: 24px;
 }

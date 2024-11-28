@@ -11,12 +11,17 @@ var weather_girl_section = document.getElementById("weather_girl_predicts");
 var footer = document.getElementById("footer")
 
 
+
+
+
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function show_country_dropdown() {
   document.getElementById("country_drop_down").classList.toggle("show");
   weather_girl.classList.toggle('slid-up');
- 
+
+  
+
   footer.classList.toggle('slid-up');
   document.body.classList.toggle("show_jinx");
   const citySections = document.querySelectorAll('.city_section');  
@@ -127,6 +132,17 @@ async function create_country_list() {
             temp_p.innerHTML = temperture; 
             temp_p.classList.add("temp_p");
 
+
+
+            var humidity_p = document.getElementById("humidity_p");
+            var wind_p = document.getElementById("wind_p");
+            
+            humidity_p.innerHTML = description[day][2];
+            wind_p.innerHTML = description[day][3];
+            
+            document.getElementById("humidity").classList.add("show_humidity_wind");
+            document.getElementById("wind").classList.add("show_humidity_wind");
+
             var weather_section = document.getElementById(day);
             weather_section.innerHTML = "";
             weather_section.appendChild(weather_icon);
@@ -193,7 +209,7 @@ async function get_weather_days(city) {
         day_number++
         
         weather_conditions_data[`day${day_number}`].push(weatherCondition);
-        weather_conditions_data[`day${day_number}`].push(temp);
+        weather_conditions_data[`day${day_number}`].push(temp+"°");
         weather_conditions_data[`day${day_number}`].push(humidity);
         weather_conditions_data[`day${day_number}`].push(wind);
         
