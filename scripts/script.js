@@ -89,6 +89,9 @@ async function create_country_list() {
 
         
         console.log(city);
+
+
+        
         show_country_dropdown();
 
         
@@ -96,13 +99,10 @@ async function create_country_list() {
           // Assuming description is an object with properties representing days
           for (const day in description) {
 
-            
-
-
             var day_weather_data = description[day][0];
 
             var icon_path = `scripts/weather_icons/${day_weather_data}.png`
-            console.log(day);
+
 
             var temperture = description[day][1];
 
@@ -113,27 +113,39 @@ async function create_country_list() {
 
             var day_p = document.createElement("P");
             day_p.innerHTML = day;
-
+            if (day=="day1"){
+              day_p.innerHTML+=" "+ city
+            }
+            day_p.classList.add("day_p");
             
             var weather_icon = document.createElement("IMG");
             weather_icon.setAttribute("src", icon_path);
-            weather_icon.setAttribute("width", "30px");
-            weather_icon.setAttribute("height", "30px");
 
+            weather_icon.classList.add("weather_icon");
 
             var temp_p = document.createElement("P"); 
             temp_p.innerHTML = temperture; 
+            temp_p.classList.add("temp_p");
 
             var weather_section = document.getElementById(day);
-            weather_section.appendChild(day_p);
-            weather_section.appendChild(temp_p);
+            weather_section.innerHTML = "";
             weather_section.appendChild(weather_icon);
+            weather_section.appendChild(temp_p);
+            weather_section.appendChild(day_p);
             
-
+          
 
             
+            if (day=="day1"){
+              weather_girl_section.appendChild(weather_section);
+              
+            }else{
+              var forecast_day_sections = document.getElementById("forecast_day_sections");
+              forecast_day_sections.appendChild(weather_section);
+            }
 
-            weather_girl_section.appendChild(weather_section); 
+
+             
 
           }
 
@@ -174,15 +186,20 @@ async function get_weather_days(city) {
         
         const weatherCondition = data.days[i].icon;
         const temp = data.days[i].temp;
-       
+        const humidity = data.days[i].humidity;
+        const wind = data.days[i].windspeed;
+        
         
         day_number++
-        console.log(weatherCondition,day_number)
+        
         weather_conditions_data[`day${day_number}`].push(weatherCondition);
         weather_conditions_data[`day${day_number}`].push(temp);
-          
+        weather_conditions_data[`day${day_number}`].push(humidity);
+        weather_conditions_data[`day${day_number}`].push(wind);
         
       }
+
+      console.log(weather_conditions_data)
       
       return weather_conditions_data;
   });

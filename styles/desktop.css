@@ -158,7 +158,9 @@ footer{
 #weather_girl{
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     background-color: #57c4ef;
     height: 677px;
     transition: transform 0.5s ease-in-out;
@@ -174,9 +176,13 @@ footer{
 
 #weather_girl_predicts{
     width: 488px;
-    height: 637px;
+    height: 449px;
     background-color: gold;
+    margin-bottom: 32px;
     
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 
@@ -294,7 +300,115 @@ footer{
 
 .day_sections{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100px;
-    margin-top: 40px;
+
+    align-items: center;
+
+}
+
+
+.temp_p{
+    
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: right;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+    color: #051320;
+
+}
+
+
+
+.day_p{
+    
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: right;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #051320;
+}
+
+
+
+
+
+
+#forecast_day_sections{
+    background-color: red;
+    display: flex;
+    width: 488px;
+    
+}
+
+
+
+
+#forecast_day_sections img{
+    width: 48px;
+    height: 48px;
+}
+
+
+
+
+
+
+
+
+
+
+#weather_girl_predicts.day_sections{
+    display: flex;
+    align-items: center;
+}
+
+
+
+#day1{
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#day1 img{
+    width: 200px;
+    height: 200px;
+}
+
+
+#day1 p:first-of-type {
+
+    font-size: 80px;
+    font-weight: 600;
+    line-height: 80px;
+    text-align: right;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+    color: #051320;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    
+}
+
+#day1 p:last-of-type {
+    
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: right;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+    color: #B3B3B3;
+    margin-top: 0px;
+
 }
