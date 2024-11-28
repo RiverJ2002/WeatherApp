@@ -1,8 +1,5 @@
 
 
-
-
-
 var city_drop_down = document.getElementById("city_drop_down");
 var country_drop_down = document.getElementById("country_drop_down");
 var dropdown_section = document.getElementById("country_cities");
@@ -10,6 +7,65 @@ var weather_girl = document.getElementById("weather_girl");
 var weather_girl_section = document.getElementById("weather_girl_predicts");
 var footer = document.getElementById("footer")
 
+var Iran_cities = {  
+  "Isfahan": "اصفهان",  
+  "Karaj": "کرج",  
+  "Mashhad": "مشهد",  
+  "Tabriz": "تبریز",  
+  "Tehran": "تهران",  
+  "Shiraz": "شیراز",  
+  "Kerman": "کرمان",  
+  "Yazd": "یزد",  
+  "Rasht": "رشت",  
+  "Arak": "اراک",  
+  "Sanandaj": "سنندج",  
+  "Bandar Abbas": "بندرعباس",  
+  "Urmia": "ارومیه",  
+  "Zanjan": "زنجان",  
+  "Dezful": "دزفول",  
+  "Khorramabad": "خرم‌آباد",  
+  "Sari": "ساری"  
+};  
+
+
+
+
+function get_date(){  
+  let date = new Date();  
+  
+  // Update the Farsi date format to show month before day  
+  let farsi_date = new Intl.DateTimeFormat("fa", {  
+      month: "long",  
+      day: "numeric",
+      weekday: "long" 
+  }).format(date).split(" ");  
+  
+  
+  let english_date = new Intl.DateTimeFormat("en", {  
+    month: "long",  
+    day: "numeric",
+    weekday: "long" 
+}).format(date).split(" "); 
+
+  function get_date_text(d){  
+      let day = d.getDate();  
+      let month = d.getMonth() + 1; // month is 0-indexed  
+      let year = d.getFullYear();  
+      let full_date = `${year}-${month}-${day}`;  
+  
+      return full_date;  
+  }  
+
+  let fullDate_now = get_date_text(date);  
+  
+  let laterDate = new Date(date);  
+  laterDate.setDate(date.getDate() + 5);  
+
+  // Format the later date  
+  let fullDate_later = get_date_text(laterDate);  
+  
+  return [fullDate_now, fullDate_later, farsi_date,english_date];  
+}  
 
 
 
@@ -85,17 +141,27 @@ async function create_country_list() {
     cities.forEach(city => {  
       var city_element = document.createElement("A");  
       city_element.classList.add("cities");  
-      city_element.textContent = city;
+
+      if (city in Iran_cities) {  
+        var city_farsi = Iran_cities[city]; 
+      }else{
+        var city_farsi = city;
+        
+      }
+
+      
+      
+      city_element.textContent = city_farsi;
       city_section.appendChild(city_element);
       
       
+
+
         // Add click event listener to city elements
       city_element.addEventListener("click", function() {
 
         
         console.log(city);
-
-
         
         show_country_dropdown();
 
@@ -117,10 +183,33 @@ async function create_country_list() {
 
 
             var day_p = document.createElement("P");
-            day_p.innerHTML = day;
-            if (day=="day1"){
-              day_p.innerHTML+=" "+ city
-            }
+
+            forecast_intro = document.getElementById("forecast_intro");
+
+
+            if (city in Iran_cities) {  
+              forecast_intro.innerHTML = `هوای چند روز آینده در ${city_farsi}`
+              if (day=="day1"){
+                day_p.innerHTML = city_farsi + " "+  get_date()[2][1] +" " +  get_date()[2][2];
+  
+              }else{
+                day_p.innerHTML = day;
+              }
+            }else{
+              forecast_intro.innerHTML = `weather forecast for the next days in ${city}`
+              if (day=="day1"){
+                day_p.innerHTML = city_farsi + " "+  get_date()[3][1] +" " +  get_date()[3][2]+"th";
+  
+              }else{
+                day_p.innerHTML = day;
+              }
+            }  
+
+
+
+            
+          
+
             day_p.classList.add("day_p");
             
             var weather_icon = document.createElement("IMG");
@@ -154,6 +243,7 @@ async function create_country_list() {
             
             if (day=="day1"){
               weather_girl_section.appendChild(weather_section);
+              
               
             }else{
               var forecast_day_sections = document.getElementById("forecast_day_sections");
@@ -189,7 +279,7 @@ async function create_country_list() {
 
 
 async function get_weather_days(city) {
-  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/2024-11-28/2024-12-03?key=TUEEN9GR67X4KGPKXA2XUZB49&unitGroup=metric&include=days`;
+  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/${get_date()[0]}/${get_date()[1]}?key=TUEEN9GR67X4KGPKXA2XUZB49&unitGroup=metric&include=days`;
   const weather_data = await fetch(apiUrl)
   .then((response) => response.json())
   
@@ -198,7 +288,6 @@ async function get_weather_days(city) {
       var weather_conditions_data ={"day1":[],"day2":[],"day3":[],"day4":[],"day5":[],"day6":[]}
       
       for (i in data.days){
-        
         
         const weatherCondition = data.days[i].icon;
         const temp = data.days[i].temp;

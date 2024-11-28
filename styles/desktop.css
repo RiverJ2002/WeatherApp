@@ -39,7 +39,9 @@ body.show_jinx{
 
 
 nav {
-    background-color: aqua;
+    background-color: #EBEBEB;
+
+    border-bottom: 1px solid #d1d1d1;
     width: 100%;
     position: fixed; /* Fix the navbar at the top */
     top: 0; /* Stick to the top */
@@ -107,7 +109,7 @@ nav {
 
 footer{
     width: 100%;
-    background-color: gold;
+    background-color: #EBEBEB;
     display: flex;
     justify-content:center;
     align-items: center;
@@ -141,6 +143,7 @@ footer{
     text-underline-position: "from-font";
     text-decoration-skip-ink: none;
 
+
 }
 
 
@@ -152,7 +155,8 @@ footer{
     text-align: right;
     text-underline-position: "from-font";
     text-decoration-skip-ink: none;
-    columns: #01CD98;
+    
+    color: #01CD98;
 }
 
 
@@ -163,7 +167,7 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #57c4ef;
+    background-color: #EBEBEB;
     
     transition: transform 0.5s ease-in-out;
     margin-top: 60px;
@@ -281,7 +285,7 @@ footer{
 #country_cities{
     display: flex;
     position: relative;
-    background-color: red;
+    background-color: #EBEBEB;
     
 
     
@@ -309,30 +313,44 @@ footer{
     text-underline-position: "from-font";
     text-decoration-skip-ink: none;
     color: #051320;
+    margin: 16px 0px 0px 0px;
+    
 
 }
 
 
 
 .day_p{
-    
+
 
     font-size: 14px;
     font-weight: 400;
     line-height: 14px;
     text-align: right;
-    text-underline-position: from-font;
+    text-underline-position: "from-font";
     text-decoration-skip-ink: none;
     color: #051320;
+    margin: 6px 0px 6px 0px;
+}
+
+
+#forecast_intro{
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: right;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+    color: #051320;
+    
 }
 
 
 
 
-
-
 #forecast_day_sections{
-    background-color: red;
+    background-color: #EBEBEB;
     display: flex;
     width: 488px;
     
@@ -354,7 +372,6 @@ footer{
 
 
 
-
 #weather_girl_predicts.day_sections{
     display: flex;
     align-items: center;
@@ -363,13 +380,16 @@ footer{
 
 
 #day1{
-    background-color: blue;
+    background-color: #EBEBEB;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+    width: 488px;
+    padding: 12px;
+    box-sizing: border-box;
     
 }
+
 
 
 #day1 img{
@@ -390,6 +410,9 @@ footer{
     color: #051320;
     margin-top: 24px;
     margin-bottom: 8px;
+    margin-left: 0px;
+    margin-right: 0px;
+
     
 }
 
@@ -403,7 +426,7 @@ footer{
     text-underline-position: "from-font";
     text-decoration-skip-ink: none;
     color: #B3B3B3;
-    margin-top: 0px;
+    margin: 0px;
 
 }
 
@@ -422,9 +445,9 @@ footer{
 
 .show_humidity_wind{
     display: flex !important;
-    background-color: blueviolet;
+    background-color: #EBEBEB;
     justify-content: space-between;
-    width: 33.888%;
+    width: 488px;
 
     font-size: 15px;
     font-weight: 500;
