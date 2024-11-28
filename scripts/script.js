@@ -16,7 +16,7 @@ toggle between hiding and showing the dropdown content */
 function show_country_dropdown() {
   document.getElementById("country_drop_down").classList.toggle("show");
   weather_girl.classList.toggle('slid-up');
-  weather_girl_section.innerHTML = ''; // Remove all children
+ 
   footer.classList.toggle('slid-up');
   document.body.classList.toggle("show_jinx");
   const citySections = document.querySelectorAll('.city_section');  
@@ -86,32 +86,59 @@ async function create_country_list() {
       
         // Add click event listener to city elements
       city_element.addEventListener("click", function() {
+
+        
         console.log(city);
         show_country_dropdown();
 
         
-      get_weather_days('Tehran').then(description => {  
-        description.forEach(day_weather_data => {  
-          var x = document.createElement("IMG");
-          x.setAttribute("src", get_weather_icon(day_weather_data));
+        get_weather_days(city).then(description => {  
+          // Assuming description is an object with properties representing days
+          for (const day in description) {
+
+            
 
 
-          x.setAttribute("width", "24");
-          x.setAttribute("height", "24");
+            var day_weather_data = description[day][0];
+
+            var icon_path = `scripts/weather_icons/${day_weather_data}.png`
+            console.log(day);
+
+            var temperture = description[day][1];
+
+            if (temperture>33){
+              icon_path = `scripts/weather_icons/hot.png`
+            }
 
 
+            var day_p = document.createElement("P");
+            day_p.innerHTML = day;
 
-          console.log(get_weather_icon(day_weather_data))
-          
-          const p = document.createElement("P"); 
-          p.innerHTML = day_weather_data; 
+            
+            var weather_icon = document.createElement("IMG");
+            weather_icon.setAttribute("src", icon_path);
+            weather_icon.setAttribute("width", "30px");
+            weather_icon.setAttribute("height", "30px");
 
-        
-          weather_girl_section.appendChild(p); 
-          weather_girl_section.appendChild(x); 
+
+            var temp_p = document.createElement("P"); 
+            temp_p.innerHTML = temperture; 
+
+            var weather_section = document.getElementById(day);
+            weather_section.appendChild(day_p);
+            weather_section.appendChild(temp_p);
+            weather_section.appendChild(weather_icon);
+            
+
+
+            
+
+            weather_girl_section.appendChild(weather_section); 
+
+          }
 
         });
-      });
+        
 
     });
     });
@@ -134,79 +161,33 @@ async function create_country_list() {
 
 
 async function get_weather_days(city) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d822c93ecbcf8e0a887cfaac6d93ff64`;
+  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/2024-11-28/2024-12-03?key=TUEEN9GR67X4KGPKXA2XUZB49&unitGroup=metric&include=days`;
   const weather_data = await fetch(apiUrl)
   .then((response) => response.json())
   
   .then(data => {
-      var day_number = 1;
-      var weather_conditions_data =Object()
-      weatherCondition_li = Array();
-      for (i in data.list){
-        if (data.list[i].dt_txt.endsWith("12:00:00")){
-          const weatherCondition = data.list[i].weather[0].description;
-          weatherCondition_li.push(weatherCondition)
-
-        }
+      var day_number = 0;
+      var weather_conditions_data ={"day1":[],"day2":[],"day3":[],"day4":[],"day5":[],"day6":[]}
+      
+      for (i in data.days){
+        
+        
+        const weatherCondition = data.days[i].icon;
+        const temp = data.days[i].temp;
+       
+        
+        day_number++
+        console.log(weatherCondition,day_number)
+        weather_conditions_data[`day${day_number}`].push(weatherCondition);
+        weather_conditions_data[`day${day_number}`].push(temp);
+          
+        
       }
       
-      return weatherCondition_li;
+      return weather_conditions_data;
   });
 
 return weather_data
-}
-
-
-
-function get_weather_icon(weather_description) {
-  
-  switch (weather_description) {
-    case "clear sky":
-      icon_code = 'clear_sky.png';
-      break;
-    case "Few clouds":
-      icon_code =  'few_clouds.png';
-      break;
-    case "scattered clouds":
-      icon_code =  'broken_clouds.png';
-      break;
-    case "broken clouds":
-      icon_code =  'broken_clouds.jpg';
-      break;
-
-    case "overcast clouds":
-      icon_code =  'overcast_clouds.png';
-      break;
-
-    case "shower rain":
-      icon_code =  'shower_rain.png';
-      break;
-    case "rain":
-      icon_code =  'rain.png';
-      break;
-    case "thunderstorm":
-      icon_code =  'thunderstorm.png';
-
-    case "snow":
-      icon_code =  'snow.png';
-    
-    case "mist":
-      icon_code =  'mist.png';
-
-    case "Hot":
-      icon_code =  'hot.png';
-
-    case "Windy":
-      icon_code =  'windy.png';
-
-    default:
-      icon_code = 'extra.png';
-      break;
-  }
-
-  weather_icon_src = `scripts/weather_icons/${icon_code}`
-  return weather_icon_src
-
 }
 
 

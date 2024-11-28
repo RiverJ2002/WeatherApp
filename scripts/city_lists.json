@@ -1,9 +1,13 @@
 {
     "Afghanistan": [
-        "Kabul"
+        "Kabul",
+        "Herat",
+        "Mazar-i-Sharif",
+        "Bamyan"
     ],
     "Albania": [
-        "Tirana"
+        "Tirana",
+        "Vlora"
     ],
     "Algeria": [
         "Algiers"
@@ -321,7 +325,21 @@
         "Karaj",
         "Mashhad",
         "Tabriz",
-        "Tehran"
+        "Tehran",
+        "Shiraz",
+        "Kerman",
+        "Yazd",
+        "Rasht",
+        "Arak",
+        "Sanandaj",
+        "Bandar%20Abbas",
+        "Urmia",
+        "Zanjan",
+        "Dezful",
+        "Khorramabad",
+        "Sari"
+
+
     ],
     "Iraq": [
         "Baghdad",
@@ -550,7 +568,18 @@
         "Moscow",
         "Novosibirsk",
         "Saint Petersburg",
-        "Yekaterinburg"
+        "Yekaterinburg",
+        "Sochi",
+        "Yakutsk",
+        "Vladivostok",
+        "Murmansk",
+        "Irkutsk",
+        "Norilsk",
+        "Krasnoyarsk",
+        "Chelyabinsk",
+        "Kazan",
+        "Astrakhan"
+
     ],
     "Rwanda": [
         "Kigali"
