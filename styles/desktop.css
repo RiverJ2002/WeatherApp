@@ -30,11 +30,24 @@ body{
     
 }
 
-
-body.show_jinx{
+body.show_jinx {
     background-image: url('extra.png'); /* Add your image path here */
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    background-position: center center; /* Centers the image in the viewport */
+    margin: 0; /* Removes any default margin to ensure full coverage */
+    height: 100vh; /* Sets the body height to match the viewport height */
+}
+
+@media (max-width: 740px) {  
+    body.show_jinx{
+        background-image: url('extra2.png'); /* Add your image path here */
+        background-size: cover; /* Ensures the image covers the entire viewport */
+        background-repeat: no-repeat; /* Prevents tiling of the image */
+        background-position: center center; /* Centers the image in the viewport */
+        margin: 0; /* Removes any default margin to ensure full coverage */
+        height: 100vh; /* Sets the body height to match the viewport height */
+    }
 }
 
 
@@ -44,10 +57,10 @@ nav {
 
     border-bottom: 1px solid #d1d1d1;
     width: 100%;
-    position: fixed; /* Fix the navbar at the top */
-    top: 0; /* Stick to the top */
+    position: fixed; /* Fix the navbar at the top when slid up accurs */
+    top: 0; 
     left: 0;
-    z-index: 1000; /* Ensure it appears above other elements */
+    z-index: 1000; /* Ensure it appears above other elements when the sliding happens */
     display: flex;
     padding-left: 56px;
     padding-right: 56px;
@@ -96,10 +109,19 @@ nav {
 
 
 
+
 #location_icon{
     width: 32px;
     height: 32px;
     margin-left: 8px;
+}
+
+
+@media (max-width: 740px) {  
+    #location_icon{
+        filter: grayscale(100%) brightness(0.4);
+        
+    }
 }
 
 
@@ -303,7 +325,7 @@ footer{
     justify-content: space-between;
     width: 88px;
     border-radius: 6px;
-
+    font-size: 2rem;
     align-items: center;
 
 }
@@ -408,9 +430,10 @@ footer{
 }
 
 
+
 #day1 p:first-of-type {
 
-    font-size: 8em;
+    font-size: 8rem;
     font-weight: 600;
     line-height: 80px;
     text-align: right;
@@ -421,14 +444,15 @@ footer{
     margin-bottom: 8px;
     margin-left: 0px;
     margin-right: 0px;
-
-    
 }
+
+
+
 
 #day1 p:last-of-type {
     
 
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 15px;
     text-align: right;
@@ -438,6 +462,8 @@ footer{
     margin: 0px;
 
 }
+
+
 
 
 #humidity{
@@ -471,6 +497,59 @@ footer{
 
 
 }
+
+
+
+@media (max-width: 970px) {  
+    #day1 img{
+        width: 160px;
+        height: 160px;
+        
+}
+#day1 p:first-of-type {
+    font-size: 6rem;
+}
+
+
+#day1 p:last-of-type {
+    font-size: 1.2rem;
+}
+
+.show_humidity_wind{
+    width: 360px;
+}
+
+#forecast_day_sections{
+    width: 360px;
+}
+
+.day_sections{
+    width: 64.8px;
+    
+}
+.day_sections p:first-of-type{
+    font-size: 1.5rem;
+    
+}
+.day_sections p:last-of-type{
+    font-size: 1.2rem;
+    
+}
+
+}
+
+
+@media (max-width: 380px) {  
+    .show_humidity_wind{
+        width: 330px;
+    }
+    .day_sections{
+        width: 66px;
+        display: flex;
+        justify-content:space-evenly;
+    }
+}
+
 
 
 .show_humidity_wind p{

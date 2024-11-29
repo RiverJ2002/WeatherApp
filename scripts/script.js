@@ -194,7 +194,7 @@ async function create_country_list() {
                 day_p.innerHTML = city_farsi + " "+  get_date(0)[1][1] +" " +  get_date(0)[1][2];
   
               }else{
-                day_p.innerHTML =  get_date(Number(matches = day.match(/(\d+)/)[0])-1)[1][0];
+                day_p.innerHTML =  get_date(Number(matches = day.match(/(\d+)/)[0])-1)[1][0].slice(0,-1);
               }
               
             }else{
@@ -203,7 +203,7 @@ async function create_country_list() {
                 day_p.innerHTML = city_farsi + " "+  get_date(0)[2][1] +" " +  get_date(0)[2][2]+"th";
   
               }else{
-                day_p.innerHTML = get_date(Number(matches = day.match(/(\d+)/)[0])-1)[2][0];
+                day_p.innerHTML = get_date(Number(matches = day.match(/(\d+)/)[0])-1)[2][0].slice(0,-1);
               }
             }  
             
