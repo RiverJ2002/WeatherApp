@@ -39,6 +39,7 @@ body.show_jinx {
     height: 100vh; 
 }
 
+
 @media (max-width: 740px) {  
     body.show_jinx{
         background-image: url('extra2.png');
@@ -48,6 +49,7 @@ body.show_jinx {
         margin: 0; 
         height: 100vh; 
     }
+
 }
 
 
@@ -70,8 +72,12 @@ nav {
     height: 60px; 
 }
 
-
-
+@media (max-width: 540px) { 
+    nav{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
 
 
 #choose_the_city{
