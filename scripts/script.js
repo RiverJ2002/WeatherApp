@@ -30,43 +30,44 @@ var Iran_cities = {
 
 
 
-function get_date(){  
-  let date = new Date();  
-  
-  // Update the Farsi date format to show month before day  
-  let farsi_date = new Intl.DateTimeFormat("fa", {  
-      month: "long",  
-      day: "numeric",
-      weekday: "long" 
-  }).format(date).split(" ");  
-  
-  
-  let english_date = new Intl.DateTimeFormat("en", {  
-    month: "long",  
-    day: "numeric",
-    weekday: "long" 
-}).format(date).split(" "); 
+function get_date(X){
 
   function get_date_text(d){  
-      let day = d.getDate();  
-      let month = d.getMonth() + 1; // month is 0-indexed  
-      let year = d.getFullYear();  
-      let full_date = `${year}-${month}-${day}`;  
-  
-      return full_date;  
-  }  
+    let day = d.getDate();  
+    let month = d.getMonth() + 1; // month is 0-indexed  
+    let year = d.getFullYear();  
+    let full_date = `${year}-${month}-${day}`;  
 
-  let fullDate_now = get_date_text(date);  
-  
-  let laterDate = new Date(date);  
-  laterDate.setDate(date.getDate() + 5);  
-
-  // Format the later date  
-  let fullDate_later = get_date_text(laterDate);  
-  
-  return [fullDate_now, fullDate_later, farsi_date,english_date];  
+    return full_date;  
 }  
 
+  let reqdate = new Date();  
+  reqdate.setDate(reqdate.getDate() + X);  
+
+  let fari_weekday = new Intl.DateTimeFormat("fa", {weekday: "long" }).format(reqdate); 
+  let english_weekday = new Intl.DateTimeFormat("en", {weekday: "long" }).format(reqdate);
+
+
+    // Update the Farsi date format to show month before day  
+  let farsi_date = new Intl.DateTimeFormat("fa", {  
+    month: "long",  
+    day: "numeric",
+    weekday:"long"
+  }).format(reqdate).split(" ");  
+
+  // Format the later date  
+  let english_date = get_date_text(reqdate);  
+
+  let english_long_date = new Intl.DateTimeFormat("en", {  
+    month: "long",  
+    day: "numeric",
+    weekday:"long"
+  }).format(reqdate).split(" "); 
+  
+
+  return [english_date,farsi_date,english_long_date]; 
+
+}  
 
 
 
@@ -190,25 +191,22 @@ async function create_country_list() {
             if (city in Iran_cities) {  
               forecast_intro.innerHTML = `هوای چند روز آینده در ${city_farsi}`
               if (day=="day1"){
-                day_p.innerHTML = city_farsi + " "+  get_date()[2][1] +" " +  get_date()[2][2];
+                day_p.innerHTML = city_farsi + " "+  get_date(0)[1][1] +" " +  get_date(0)[1][2];
   
               }else{
-                day_p.innerHTML = day;
+                day_p.innerHTML =  get_date(Number(matches = day.match(/(\d+)/)[0])-1)[1][0];
               }
+              
             }else{
-              forecast_intro.innerHTML = `weather forecast for the next days in ${city}`
+              forecast_intro.innerHTML = `weather for the next 5 days in ${city}`
               if (day=="day1"){
-                day_p.innerHTML = city_farsi + " "+  get_date()[3][1] +" " +  get_date()[3][2]+"th";
+                day_p.innerHTML = city_farsi + " "+  get_date(0)[2][1] +" " +  get_date(0)[2][2]+"th";
   
               }else{
-                day_p.innerHTML = day;
+                day_p.innerHTML = get_date(Number(matches = day.match(/(\d+)/)[0])-1)[2][0];
               }
             }  
-
-
-
             
-          
 
             day_p.classList.add("day_p");
             
@@ -279,7 +277,7 @@ async function create_country_list() {
 
 
 async function get_weather_days(city) {
-  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/${get_date()[0]}/${get_date()[1]}?key=TUEEN9GR67X4KGPKXA2XUZB49&unitGroup=metric&include=days`;
+  let apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/${get_date(0)[0]}/${get_date(5)[0]}?key=TUEEN9GR67X4KGPKXA2XUZB49&unitGroup=metric&include=days`;
   const weather_data = await fetch(apiUrl)
   .then((response) => response.json())
   

@@ -34,6 +34,7 @@ body{
 body.show_jinx{
     background-image: url('extra.png'); /* Add your image path here */
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
@@ -89,6 +90,8 @@ nav {
     text-align: right;
     text-underline-position: "from-font";
     text-decoration-skip-ink: none;
+
+    color: #a6a5a5;
 }
 
 
@@ -295,9 +298,11 @@ footer{
 
 .day_sections{
     display: flex;
+    border: 0.8px solid #d1d1d1;
     flex-direction: column;
     justify-content: space-between;
-    width: 100px;
+    width: 88px;
+    border-radius: 6px;
 
     align-items: center;
 
@@ -354,6 +359,7 @@ footer{
     display: flex;
     width: 488px;
     
+    justify-content: space-between;
 }
 
 
@@ -387,6 +393,9 @@ footer{
     width: 488px;
     padding: 12px;
     box-sizing: border-box;
+
+
+    border: none;
     
 }
 
@@ -433,6 +442,7 @@ footer{
 
 #humidity{
     display: none;
+    bottom: red;
     
 }
 
@@ -449,6 +459,8 @@ footer{
     justify-content: space-between;
     width: 488px;
 
+
+
     font-size: 15px;
     font-weight: 500;
     line-height: 15px;
@@ -464,3 +476,6 @@ footer{
 .show_humidity_wind p{
     margin: 24px;
 }
+
+
+
